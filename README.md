@@ -46,4 +46,9 @@ Ensure you have the following prerequisites installed:
    ```bash
    cd Cellular-Automaton
 
-3. Run the python file ```bash main.py``` :
+3. Run the python file ```main.py``` :
+   ```bash
+   python3 main.py
+
+## Usage
+   
