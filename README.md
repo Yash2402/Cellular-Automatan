@@ -32,8 +32,8 @@ Follow these steps to get started with the Cellular Automaton Simulation.
 
 Ensure you have the following prerequisites installed:
 
-- Python 3.x
-- [Any additional libraries or dependencies]
+- Python 3.X
+- Pygame 2.1.2
 
 ### Installation
 
@@ -41,3 +41,9 @@ Ensure you have the following prerequisites installed:
 
    ```bash
    git clone https://github.com/yourusername/cellular-automaton-simulation.git
+
+2. Navigate to the directory Cellular-Automaton:
+   ```bash
+   cd Cellular-Automaton
+
+3. Run the python file ```bash main.py :
