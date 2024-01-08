@@ -45,8 +45,10 @@ Ensure you have the following prerequisites installed:
 2. Navigate to the directory Cellular-Automaton:
    ```bash
    cd Cellular-Automaton
-
-3. Run the python file ```main.py``` :
+3. Install requirements:
+   ```bash
+   pip3 install -r requirements.txt
+5. Run the python file ```main.py``` :
    ```bash
    python3 main.py
 
