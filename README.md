@@ -53,4 +53,12 @@ Ensure you have the following prerequisites installed:
    python3 main.py
 
 ## Usage
-   
+  ### Rules
+  1. To select different elements:
+      - ```1``` : Sand
+      - ```2``` : Water
+      - ```3``` : Smoke
+      - ```4``` : Wall
+  2. To pause the simulation:
+      - ```space```
+  3.  
