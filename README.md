@@ -61,4 +61,4 @@ Ensure you have the following prerequisites installed:
       - ```4``` : Wall
   2. To pause the simulation:
       - ```space```
-  3.  
+  3. To reset:

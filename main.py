@@ -8,7 +8,7 @@ W = 1024
 H = 900
 w = 8
 screen = pygame.display.set_mode((W, H), pygame.RESIZABLE)
-cells = []
+initial_state = []
 
 for x in range(0, W, w):
     buffer = []
@@ -21,9 +21,9 @@ for x in range(0, W, w):
         else:
             buffer.append(
                 Cell((i, j), (x, y, w, w), 'air'))
-    cells.append(buffer)
+    initial_state.append(buffer)
 
-initial_state = cells
+cells = initial_state.copy()
 run = True
 clock = pygame.time.Clock()
 upd = True
@@ -48,6 +48,16 @@ while run:
             if event.key == pygame.K_4:
                 elementchoosen = 'wall'
                 editWidth = 2
+            if event.key == pygame.K_SPACE:
+                upd = not upd
+            if event.key == pygame.K_0:
+                print(id(cells), id(initial_state))
+                for i in range(len(initial_state)):
+                    for j in range(len(initial_state[i])):
+                        print(initial_state[i][j].element)
+                cells = initial_state
+                print(cells == initial_state)
+                cells = Cell.update(cells)
             
         if pygame.mouse.get_pressed()[0]:
             mousepos = pygame.mouse.get_pos()
@@ -77,13 +87,7 @@ while run:
                     for y in range(j-editWidth, j+editWidth+1):
                         cells[x][y].element = 'air'
 
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_SPACE:
-                upd = not upd
-            if event.key == pygame.K_r:
-                upd = False
-                cells = initial_state
-    if upd:        
+    if upd:
         cells = Cell.update(cells)
     for i in range(len(cells)):
         for j in range(len(cells[0])):
