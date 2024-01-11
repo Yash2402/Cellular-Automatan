@@ -1,6 +1,7 @@
 import random
 import pygame
 from cell import Cell
+import copy
 
 pygame.init()
 
@@ -23,7 +24,7 @@ for x in range(0, W, w):
                 Cell((i, j), (x, y, w, w), 'air'))
     initial_state.append(buffer)
 
-cells = initial_state.copy()
+cells = copy.deepcopy(initial_state)
 run = True
 clock = pygame.time.Clock()
 upd = True
@@ -50,14 +51,8 @@ while run:
                 editWidth = 2
             if event.key == pygame.K_SPACE:
                 upd = not upd
-            if event.key == pygame.K_0:
-                print(id(cells), id(initial_state))
-                for i in range(len(initial_state)):
-                    for j in range(len(initial_state[i])):
-                        print(initial_state[i][j].element)
-                cells = initial_state
-                print(cells == initial_state)
-                cells = Cell.update(cells)
+            if event.key == pygame.K_r:
+                cells = copy.deepcopy(initial_state)
             
         if pygame.mouse.get_pressed()[0]:
             mousepos = pygame.mouse.get_pos()
