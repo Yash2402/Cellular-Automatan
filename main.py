@@ -5,25 +5,23 @@ import copy
 
 pygame.init()
 
-# W = 1024
-# H = 900
-w = 8
+cell_width = 8
 screen = pygame.display.set_mode((0, 0), pygame.RESIZABLE)
 W = screen.get_width()
 H = screen.get_height()
 initial_state = []
 
-for x in range(0, W, w):
+for x in range(0, W, cell_width):
     buffer = []
-    for y in range(0, H, w):
-        i = x//w
-        j = y//w
-        if (i == 0 or j == 0) or (i == (W//w) - 1 or j == (H//w) ):
+    for y in range(0, H, cell_width):
+        i = x//cell_width
+        j = y//cell_width
+        if (i == 0 or j == 0) or (i == (W//cell_width) - 1 or j == (H//cell_width) ):
             buffer.append(
-                Cell((i, j), (x, y, w, w), 'wall'))
+                Cell((i, j), (x, y, cell_width, cell_width), 'wall'))
         else:
             buffer.append(
-                Cell((i, j), (x, y, w, w), 'air'))
+                Cell((i, j), (x, y, cell_width, cell_width), 'air'))
     initial_state.append(buffer)
 
 cells = copy.deepcopy(initial_state)
@@ -59,16 +57,16 @@ while run:
         if pygame.mouse.get_pressed()[0]:
             mousepos = pygame.mouse.get_pos()
             if (mousepos[0] < W - 1 and mousepos[1] < H - 1 and mousepos[0] > 0 and mousepos[1] > 0) and elementchoosen != 'wall':
-                i = int(mousepos[0]/(w))
-                j = int(mousepos[1]/(w))
+                i = int(mousepos[0]/(cell_width))
+                j = int(mousepos[1]/(cell_width))
                 for x in range(i-editWidth, i+editWidth+1):
                     for y in range(j-editWidth, j+editWidth+1):
                         prob = random.randint(0, 1)
                         if prob:
                             cells[x][y].element = elementchoosen
             if (mousepos[0] < W - 1 and mousepos[1] < H - 1 and mousepos[0] > 0 and mousepos[1] > 0) and elementchoosen == 'wall':
-                i = int(mousepos[0]/(w))
-                j = int(mousepos[1]/(w))
+                i = int(mousepos[0]/(cell_width))
+                j = int(mousepos[1]/(cell_width))
                 for x in range(i-editWidth, i+editWidth+1):
                     for y in range(j-editWidth, j+editWidth+1):
                             cells[x][y].element = elementchoosen
@@ -76,8 +74,8 @@ while run:
         if pygame.mouse.get_pressed()[2]:
             mousepos = pygame.mouse.get_pos()
             if mousepos[0] < W - 1 and mousepos[1] < H - 1 and mousepos[0] > 0 and mousepos[1] > 0:
-                i = int(mousepos[0]/w)
-                j = int(mousepos[1]/w)
+                i = int(mousepos[0]/cell_width)
+                j = int(mousepos[1]/cell_width)
                 for x in range(i-editWidth, i+editWidth+1):
                     for y in range(j-editWidth, j+editWidth+1):
                         cells[x][y].element = 'air'
