@@ -5,10 +5,12 @@ import copy
 
 pygame.init()
 
-W = 1024
-H = 900
+# W = 1024
+# H = 900
 w = 8
-screen = pygame.display.set_mode((W, H), pygame.RESIZABLE)
+screen = pygame.display.set_mode((0, 0), pygame.RESIZABLE)
+W = screen.get_width()
+H = screen.get_height()
 initial_state = []
 
 for x in range(0, W, w):
@@ -16,7 +18,7 @@ for x in range(0, W, w):
     for y in range(0, H, w):
         i = x//w
         j = y//w
-        if (i == 0 or j == 0) or (i == (W//w) - 1 or j == (H//w) - 1):
+        if (i == 0 or j == 0) or (i == (W//w) - 1 or j == (H//w) ):
             buffer.append(
                 Cell((i, j), (x, y, w, w), 'wall'))
         else:
@@ -32,7 +34,7 @@ elementchoosen = 'sand'
 editWidth = 3
 while run:
     clock.tick(120)
-    screen.fill((64, 64, 64))
+    screen.fill((120, 120, 120))
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
@@ -69,8 +71,6 @@ while run:
                 j = int(mousepos[1]/(w))
                 for x in range(i-editWidth, i+editWidth+1):
                     for y in range(j-editWidth, j+editWidth+1):
-                        prob = 1
-                        if prob:
                             cells[x][y].element = elementchoosen
                         
         if pygame.mouse.get_pressed()[2]:

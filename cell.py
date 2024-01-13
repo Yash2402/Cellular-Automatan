@@ -25,7 +25,7 @@ class Cell():
         elif self.element == 'wall':
             self.color = (78, 78, 78)
 
-        pygame.draw.rect(screen, self.color, (self.x, self.y, self.w, self.h))
+        pygame.draw.rect(screen, self.color, (self.x - 1, self.y - 1, self.w - 1, self.h - 1))
             
 
     def neighbour(self, cells):
