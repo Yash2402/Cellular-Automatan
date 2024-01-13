@@ -5,7 +5,7 @@ import copy
 
 pygame.init()
 
-cell_width = 8
+cell_width = 4
 screen = pygame.display.set_mode((0, 0), pygame.RESIZABLE)
 W = screen.get_width()
 H = screen.get_height()
