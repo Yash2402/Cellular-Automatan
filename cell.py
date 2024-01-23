@@ -218,79 +218,58 @@ class Cell():
                     if cell.element == 'fluid' and cell:
 
                         if neighbours['bottom'].element == 'air':
-                                
+                            nextgen[i][j].element = 'air'
+                            nextgen[i][j+1].element = 'sand'
+                            
+                        elif neighbours['bottom'].element == 'fluid':
                             nextgen[i][j].element = nextgen[i][j+1].element
-                            nextgen[i][j+1].element = 'fluid'
+                            nextgen[i][j+1].element = 'sand'
 
-                        elif ((neighbours[   'bottom'   ].element == 'wall' or neighbours[   'bottom'  ].element == 'sand' or neighbours['bottom'].element == 'fluid')
-                                and  neighbours[ 'bottomleft' ].element == 'air' 
-                                and  neighbours[ 'bottomright'].element == 'air'):
+                        elif ((neighbours[   'bottom'   ].element == 'wall' or neighbours['bottom'].element == 'sand')
+                            and (neighbours[ 'bottomleft' ].element == 'air' or neighbours[ 'bottomleft' ].element == 'fluid')
+                            and (neighbours[ 'bottomright'].element == 'air' or neighbours[ 'bottomright' ].element == 'fluid')):
 
                             if neighbours['left'].element == 'air' and neighbours['right'].element == 'wall':
-                                nextgen[i][j].element = nextgen[i-1][j+1].element
-                                nextgen[i-1][j+1].element = 'fluid'
+                                    nextgen[i][j].element = nextgen[i-1][j+1].element
+                                    nextgen[i-1][j+1].element = 'sand'
+
                             elif neighbours['left'].element == 'wall' and neighbours['right'].element == 'air':
                                 nextgen[i][j].element = nextgen[i+1][j+1].element
-                                nextgen[i+1][j+1].element = 'fluid'
-                            elif neighbours['left'].element == 'wall' and neighbours['right'].element == 'wall': pass
+                                nextgen[i+1][j+1].element = 'sand'
+
+                            elif neighbours['left'].element == 'wall' and neighbours['right'].element == 'wall':
+                                pass
+
                             elif neighbours['left'].element == 'air' and neighbours['right'].element == 'air':
                                 nextgen[i][j].element = 'air'
                                 probality = random.randint(0, 1)
-
+                                    
                                 if probality:
-                                    nextgen[i+1][j+1].element = 'fluid'
+                                    nextgen[i+1][j+1].element = 'sand'
                                 else:
-                                    nextgen[i-1][j+1].element = 'fluid'
+                                    nextgen[i-1][j+1].element = 'sand'
 
-                        elif ((neighbours[   'bottom'  ].element == 'wall' or neighbours['bottom'].element == 'sand' or neighbours['bottom'].element == 'fluid')
-                                and (neighbours[ 'bottomleft'].element == 'wall' or neighbours['bottomleft'].element == 'sand' or neighbours['bottomleft'].element == 'fluid')
-                                and  neighbours['bottomright'].element == 'air'):
+                        elif ((neighbours[   'bottom'  ].element == 'wall' or neighbours['bottom'].element == 'sand')
+                            and (neighbours[ 'bottomleft'].element == 'wall' or neighbours['bottomleft'].element == 'sand')
+                            and (neighbours['bottomright'].element == 'air' or neighbours[ 'bottomright' ].element == 'fluid')):
 
                             if neighbours['right'].element == 'air':
                                 nextgen[i][j].element = nextgen[i+1][j+1].element
-                                nextgen[i+1][j+1].element = 'fluid'
+                                nextgen[i+1][j+1].element = 'sand'
                             if neighbours['left'].element == 'air' and neighbours['right'].element == 'wall':
                                 nextgen[i][j].element = nextgen[i-1][j].element
-                                nextgen[i-1][j].element = 'fluid'
+                                nextgen[i-1][j].element = 'sand'
 
-                        elif ((neighbours[   'bottom'  ].element == 'wall' or neighbours[   'bottom'  ].element == 'sand' or neighbours[   'bottom'  ].element == 'fluid')
-                                and  neighbours[ 'bottomleft'].element == 'air' 
-                                and (neighbours['bottomright'].element == 'wall' or neighbours['bottomright'].element == 'sand' or neighbours['bottomright'].element == 'fluid')):
+                        elif ((neighbours[   'bottom'  ].element == 'wall' or neighbours[   'bottom'  ].element == 'sand')
+                                and (neighbours[ 'bottomleft'].element == 'air' or neighbours[ 'bottomleft' ].element == 'fluid')
+                                and (neighbours['bottomright'].element == 'wall' or neighbours['bottomright'].element == 'sand')):
 
                             if neighbours['left'].element == 'air':
                                 nextgen[i][j].element = nextgen[i-1][j+1].element
-                                nextgen[i-1][j+1].element = 'fluid'
+                                nextgen[i-1][j+1].element = 'sand'
                             if neighbours['right'].element == 'air' and neighbours['left'].element == 'wall':
                                 nextgen[i][j].element = nextgen[i+1][j].element
-                                nextgen[i+1][j].element = 'fluid'
-                        elif ((neighbours[   'bottom'  ].element == 'wall' or neighbours['bottom'].element == 'sand' or neighbours['bottom'].element == 'fluid')
-                            and (neighbours[ 'bottomleft'].element == 'wall' or neighbours['bottomleft'].element == 'sand' or neighbours['bottomleft'].element == 'fluid')
-                            and (neighbours['bottomright'].element == 'wall' or neighbours['bottomright'].element == 'sand' or neighbours['bottomright'].element == 'fluid')):
-
-                            if ((neighbours['left'].element == 'wall' 
-                                or neighbours['left'].element == 'sand' 
-                                or neighbours['left'].element == 'fluid') 
-                                and neighbours['right'].element == 'air'):
-                                nextgen[i][j].element = nextgen[i+1][j].element
-                                nextgen[i+1][j].element = 'fluid'
-
-                            elif (neighbours['left'].element == 'air' 
-                                and (neighbours['right'].element == 'wall' 
-                                or neighbours['right'].element == 'sand' 
-                                or neighbours['right'].element == 'fluid')): 
-                                    
-                                nextgen[i][j].element = nextgen[i-1][j].element
-                                nextgen[i-1][j].element = 'fluid'
-
-                            elif (neighbours['left'].element == 'air' 
-                                and neighbours['right'].element == 'air'):
-                                probality = random.randint(-1, 1)
-                                if probality < 0:
-                                    nextgen[i][j].element = nextgen[i+1][j].element
-                                    nextgen[i+1][j].element = 'fluid'
-                                else:
-                                    nextgen[i][j].element = nextgen[i-1][j].element
-                                    nextgen[i-1][j].element = 'fluid'
+                                nextgen[i+1][j].element = 'sand'
 
                         else: pass
         return nextgen
