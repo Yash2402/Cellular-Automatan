@@ -19,7 +19,7 @@ class Cell():
         elif self.element == 'fluid': self.color = (127 , 166 , 248 )
         elif self.element == 'smoke': self.color = (200 , 200 , 200 )
         elif self.element == 'wall': self.color = (78 , 78 , 78 )
-        pygame.draw.rect(screen, self.color, (self.x - 1, self.y - 1, self.w - 1, self.h - 1))
+        pygame.draw.rect(screen, self.color, (self.x - 1, self.y - 1, self.w - 1, self.h - 1), 5)
             
     def neighbour(self, cells):
         if  (self.i != len(cells)-1 and self.i != 0) and (self.j != len(cells[self.i])-1 and self.j != 0):
@@ -55,7 +55,6 @@ class Cell():
 
                         elif ((neighbours['top'].element == 'wall' 
                                or neighbours['top'].element == 'sand' 
-                               or neighbours['top'].element == 'fluid'
                                or neighbours['top'].element == 'smoke') 
                                and  neighbours['topleft'].element == 'air' 
                                and  neighbours['topright'].element == 'air'):
@@ -81,12 +80,10 @@ class Cell():
 
                         elif ((neighbours['top'].element == 'wall' 
                                or neighbours['top'].element == 'sand' 
-                               or neighbours['top'].element == 'fluid'
                                or neighbours['top'].element == 'smoke')
                             and  neighbours['topright'].element == 'air'
                             and (neighbours[ 'topleft'].element == 'wall' 
                                  or neighbours['topleft'].element == 'sand' 
-                                 or neighbours['topleft'].element == 'fluid'
                                  or neighbours['topleft'].element == 'smoke')):
 
                             if neighbours['right'].element == 'air':
@@ -99,12 +96,10 @@ class Cell():
 
                         elif ((neighbours['top'].element == 'wall' 
                                or neighbours['top'].element == 'sand' 
-                               or neighbours['top'].element == 'fluid'
                                or neighbours['top'].element == 'smoke')
                             and  neighbours['topleft'].element == 'air' 
                             and (neighbours['topright'].element == 'wall' 
-                                 or neighbours['topright'].element == 'sand' 
-                                 or neighbours['topright'].element == 'fluid'
+                                 or neighbours['topright'].element == 'sand'
                                  or neighbours['topright'].element == 'smoke')):
 
                             if neighbours['left'].element == 'air':
@@ -116,20 +111,16 @@ class Cell():
 
                         elif ((neighbours['top'].element == 'wall' 
                                or neighbours['top'].element == 'sand' 
-                               or neighbours['top'].element == 'fluid'
                                or neighbours['top'].element == 'smoke')
                             and (neighbours[ 'topleft'].element == 'wall' 
                                  or neighbours['topleft'].element == 'sand' 
-                                 or neighbours['topleft'].element == 'fluid'
                                  or neighbours['topleft'].element == 'smoke')
                             and (neighbours['topright'].element == 'wall' 
                                  or neighbours['topright'].element == 'sand' 
-                                 or neighbours['topright'].element == 'fluid'
                                  or neighbours['topright'].element == 'smoke')):
 
                             if ((neighbours['left'].element == 'wall' 
                                 or neighbours['left'].element == 'sand' 
-                                or neighbours['left'].element == 'fluid'
                                 or neighbours['left'].element == 'smoke') 
                                 and neighbours['right'].element == 'air'):
 
@@ -139,7 +130,6 @@ class Cell():
                             elif (neighbours['left'].element == 'air' 
                                 and (neighbours['right'].element == 'wall' 
                                 or neighbours['right'].element == 'sand' 
-                                or neighbours['right'].element == 'fluid'
                                 or neighbours['right'].element == 'smoke')): 
                                     
                                 nextgen[i][j].element = neighbours['left'].element
@@ -222,8 +212,7 @@ class Cell():
 
                         elif ((neighbours['bottom'].element == 'wall' 
                                or neighbours['bottom'].element == 'sand' 
-                               or neighbours['bottom'].element == 'fluid'
-                               or neighbours['bottom'].element == 'smoke') 
+                               or neighbours['bottom'].element == 'fluid') 
                                and  neighbours['bottomleft'].element == 'air' 
                                and  neighbours['bottomright'].element == 'air'):
 
@@ -248,13 +237,11 @@ class Cell():
 
                         elif ((neighbours['bottom'].element == 'wall' 
                                or neighbours['bottom'].element == 'sand' 
-                               or neighbours['bottom'].element == 'fluid'
-                               or neighbours['bottom'].element == 'smoke')
+                               or neighbours['bottom'].element == 'fluid')
                             and  neighbours['bottomright'].element == 'air'
                             and (neighbours['bottomleft'].element == 'wall' 
                                  or neighbours['bottomleft'].element == 'sand' 
-                                 or neighbours['bottomleft'].element == 'fluid'
-                                 or neighbours['bottomleft'].element == 'smoke')):
+                                 or neighbours['bottomleft'].element == 'fluid')):
 
                             if neighbours['right'].element == 'air':
                                 nextgen[i][j].element = neighbours['bottomright'].element
@@ -266,13 +253,11 @@ class Cell():
 
                         elif ((   neighbours['bottom'].element == 'wall' 
                                or neighbours['bottom'].element == 'sand' 
-                               or neighbours['bottom'].element == 'fluid'
-                               or neighbours['bottom'].element == 'smoke')
+                               or neighbours['bottom'].element == 'fluid')
                             and neighbours['bottomleft'].element == 'air' 
                             and (   neighbours['bottomright'].element == 'wall' 
                                  or neighbours['bottomright'].element == 'sand' 
-                                 or neighbours['bottomright'].element == 'fluid'
-                                 or neighbours['bottomright'].element == 'smoke')):
+                                 or neighbours['bottomright'].element == 'fluid')):
 
                             if neighbours['left'].element == 'air':
                                 nextgen[i][j].element = neighbours['bottomleft'].element
@@ -284,21 +269,17 @@ class Cell():
 
                         elif ((   neighbours['bottom'].element == 'wall' 
                                or neighbours['bottom'].element == 'sand' 
-                               or neighbours['bottom'].element == 'fluid'
-                               or neighbours['bottom'].element == 'smoke')
+                               or neighbours['bottom'].element == 'fluid')
                             and (   neighbours['bottomleft'].element == 'wall' 
                                  or neighbours['bottomleft'].element == 'sand' 
-                                 or neighbours['bottomleft'].element == 'fluid'
-                                 or neighbours['bottomleft'].element == 'smoke')
+                                 or neighbours['bottomleft'].element == 'fluid')
                             and (   neighbours['bottomright'].element == 'wall' 
                                  or neighbours['bottomright'].element == 'sand' 
-                                 or neighbours['bottomright'].element == 'fluid'
-                                 or neighbours['bottomright'].element == 'smoke')):
+                                 or neighbours['bottomright'].element == 'fluid')):
 
                             if ((neighbours['left'].element == 'wall' 
                                 or neighbours['left'].element == 'sand' 
-                                or neighbours['left'].element == 'fluid'
-                                or neighbours['left'].element == 'smoke') 
+                                or neighbours['left'].element == 'fluid') 
                                 and neighbours['right'].element == 'air'):
 
                                 nextgen[i][j].element = neighbours['right'].element
@@ -307,8 +288,7 @@ class Cell():
                             elif (neighbours['left'].element == 'air' 
                                 and (neighbours['right'].element == 'wall' 
                                 or neighbours['right'].element == 'sand' 
-                                or neighbours['right'].element == 'fluid'
-                                or neighbours['right'].element == 'smoke')): 
+                                or neighbours['right'].element == 'fluid')): 
                                     
                                 nextgen[i][j].element = neighbours['left'].element
                                 nextgen[i-1][j].element = 'fluid'
