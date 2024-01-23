@@ -19,7 +19,7 @@ class Cell():
         elif self.element == 'fluid': self.color = (127 , 166 , 248 )
         elif self.element == 'smoke': self.color = (200 , 200 , 200 )
         elif self.element == 'wall': self.color = (78 , 78 , 78 )
-        pygame.draw.rect(screen, self.color, (self.x - 1, self.y - 1, self.w - 1, self.h - 1), 5)
+        pygame.draw.rect(screen, self.color, (self.x - 1, self.y - 1, self.w - 1, self.h - 1))
             
     def neighbour(self, cells):
         if  (self.i != len(cells)-1 and self.i != 0) and (self.j != len(cells[self.i])-1 and self.j != 0):
