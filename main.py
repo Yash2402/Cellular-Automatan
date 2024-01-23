@@ -5,7 +5,7 @@ import copy
 
 pygame.init()
 
-cell_width = 4
+cell_width = 12
 screen = pygame.display.set_mode((0, 0), pygame.RESIZABLE)
 W = screen.get_width()
 H = screen.get_height()
@@ -31,7 +31,7 @@ upd = True
 elementchoosen = 'sand'
 editWidth = 3
 while run:
-    clock.tick(120)
+    clock.tick(30)
     screen.fill((120, 120, 120))
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -82,6 +82,7 @@ while run:
 
     if upd:
         cells = Cell.update(cells)
+
     for i in range(len(cells)):
         for j in range(len(cells[0])):
             cells[i][j].show(screen)
