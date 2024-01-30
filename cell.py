@@ -36,12 +36,10 @@ class Cell():
 
     @staticmethod
     def update(cells):
+        nextgen = cells
         for i in range(len(cells)):
             for j in range(len(cells[i])):
-
                 if (i != len(cells) or i != 0) or (j != len(cells[0]) or j != 0):
-
-                    nextgen = cells
                     cell = cells[i][j]
                     neighbours = cell.neighbour(cells)
 
