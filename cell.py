@@ -1,4 +1,5 @@
 import random
+
 import pygame
 
 
@@ -51,65 +52,175 @@ class Cell:
                 cell = cells[i][j]
                 neighbours = cell.neighbour(cells)
                 match cell.element:
-                    case "air": continue
+                    case "air":
+                        continue
                     case "smoke":
                         if neighbours["top"].element == "air":
-                            nextgen[i][j].element, nextgen[i][j - 1].element = neighbours["top"].element, "smoke"
+                            nextgen[i][j].element, nextgen[i][j - 1].element = (
+                                neighbours["top"].element,
+                                "smoke",
+                            )
 
-                        elif ((neighbours["top"].element == "wall" or neighbours["top"].element == "sand" or neighbours["top"].element == "smoke")
-                            and neighbours["topleft"].element == "air"and neighbours["topright"].element == "air"):
+                        elif (
+                            (
+                                neighbours["top"].element == "wall"
+                                or neighbours["top"].element == "sand"
+                                or neighbours["top"].element == "smoke"
+                            )
+                            and neighbours["topleft"].element == "air"
+                            and neighbours["topright"].element == "air"
+                        ):
 
-                            if (neighbours["left"].element == "air" and neighbours["right"].element == "wall"):
-                                nextgen[i][j].element, nextgen[i - 1][j - 1].element = neighbours["topleft"].element, "smoke"
+                            if (
+                                neighbours["left"].element == "air"
+                                and neighbours["right"].element == "wall"
+                            ):
+                                nextgen[i][j].element, nextgen[i - 1][j - 1].element = (
+                                    neighbours["topleft"].element,
+                                    "smoke",
+                                )
 
-                            elif (neighbours["left"].element == "wall" and neighbours["right"].element == "air"):
-                                nextgen[i][j].element, nextgen[i + 1][j - 1].element = neighbours["topright"].element, "smoke"
+                            elif (
+                                neighbours["left"].element == "wall"
+                                and neighbours["right"].element == "air"
+                            ):
+                                nextgen[i][j].element, nextgen[i + 1][j - 1].element = (
+                                    neighbours["topright"].element,
+                                    "smoke",
+                                )
 
-                            elif (neighbours["left"].element == "wall" and neighbours["right"].element == "wall"):
+                            elif (
+                                neighbours["left"].element == "wall"
+                                and neighbours["right"].element == "wall"
+                            ):
                                 continue
 
-                            elif (neighbours["left"].element == "air" and neighbours["right"].element == "air"):
+                            elif (
+                                neighbours["left"].element == "air"
+                                and neighbours["right"].element == "air"
+                            ):
                                 if random.randint(0, 1):
-                                    nextgen[i][j].element, nextgen[i + 1][j - 1].element = neighbours["topright"].element, "smoke"
+                                    (
+                                        nextgen[i][j].element,
+                                        nextgen[i + 1][j - 1].element,
+                                    ) = (neighbours["topright"].element, "smoke")
                                 else:
-                                    nextgen[i][j].element, nextgen[i - 1][j - 1].element = neighbours["topleft"].element, "smoke"
+                                    (
+                                        nextgen[i][j].element,
+                                        nextgen[i - 1][j - 1].element,
+                                    ) = (neighbours["topleft"].element, "smoke")
 
-                        elif ((neighbours["top"].element == "wall" or neighbours["top"].element == "sand" or neighbours["top"].element == "smoke")
+                        elif (
+                            (
+                                neighbours["top"].element == "wall"
+                                or neighbours["top"].element == "sand"
+                                or neighbours["top"].element == "smoke"
+                            )
                             and neighbours["topright"].element == "air"
-                            and (neighbours["topleft"].element == "wall" or neighbours["topleft"].element == "sand" or neighbours["topleft"].element == "smoke")):
+                            and (
+                                neighbours["topleft"].element == "wall"
+                                or neighbours["topleft"].element == "sand"
+                                or neighbours["topleft"].element == "smoke"
+                            )
+                        ):
 
                             if neighbours["right"].element == "air":
-                                nextgen[i][j].element, nextgen[i + 1][j - 1].element = neighbours["topright"].element, "smoke"
+                                nextgen[i][j].element, nextgen[i + 1][j - 1].element = (
+                                    neighbours["topright"].element,
+                                    "smoke",
+                                )
 
-                            if (neighbours["left"].element == "air" and neighbours["right"].element == "wall"):
-                                nextgen[i][j].element, nextgen[i - 1][j].element = neighbours["left"].element, "smoke"
+                            if (
+                                neighbours["left"].element == "air"
+                                and neighbours["right"].element == "wall"
+                            ):
+                                nextgen[i][j].element, nextgen[i - 1][j].element = (
+                                    neighbours["left"].element,
+                                    "smoke",
+                                )
 
-                        elif ((neighbours["top"].element == "wall" or neighbours["top"].element == "sand" or neighbours["top"].element == "smoke")
+                        elif (
+                            (
+                                neighbours["top"].element == "wall"
+                                or neighbours["top"].element == "sand"
+                                or neighbours["top"].element == "smoke"
+                            )
                             and neighbours["topleft"].element == "air"
-                            and (neighbours["topright"].element == "wall" or neighbours["topright"].element == "sand" or neighbours["topright"].element == "smoke")):
+                            and (
+                                neighbours["topright"].element == "wall"
+                                or neighbours["topright"].element == "sand"
+                                or neighbours["topright"].element == "smoke"
+                            )
+                        ):
 
                             if neighbours["left"].element == "air":
-                                nextgen[i][j].element, nextgen[i - 1][j - 1].element = neighbours["topleft"].element, "smoke"
-                                
-                            if (neighbours["right"].element == "air" and neighbours["left"].element == "wall"):
-                                nextgen[i][j].element, nextgen[i + 1][j].element = neighbours["right"].element, "smoke"
+                                nextgen[i][j].element, nextgen[i - 1][j - 1].element = (
+                                    neighbours["topleft"].element,
+                                    "smoke",
+                                )
 
-                        elif ((neighbours["top"].element == "wall" or neighbours["top"].element == "sand" or neighbours["top"].element == "smoke")
-                            and (neighbours["topleft"].element == "wall" or neighbours["topleft"].element == "sand" or neighbours["topleft"].element == "smoke")
-                            and (neighbours["topright"].element == "wall" or neighbours["topright"].element == "sand" or neighbours["topright"].element == "smoke")):
+                            if (
+                                neighbours["right"].element == "air"
+                                and neighbours["left"].element == "wall"
+                            ):
+                                nextgen[i][j].element, nextgen[i + 1][j].element = (
+                                    neighbours["right"].element,
+                                    "smoke",
+                                )
 
-                            if (neighbours["left"].element == "wall" or neighbours["left"].element == "sand" or neighbours["left"].element == "smoke") and neighbours["right"].element == "air":
-                                nextgen[i][j].element, nextgen[i + 1][j].element = neighbours["right"].element, "smoke"
+                        elif (
+                            (
+                                neighbours["top"].element == "wall"
+                                or neighbours["top"].element == "sand"
+                                or neighbours["top"].element == "smoke"
+                            )
+                            and (
+                                neighbours["topleft"].element == "wall"
+                                or neighbours["topleft"].element == "sand"
+                                or neighbours["topleft"].element == "smoke"
+                            )
+                            and (
+                                neighbours["topright"].element == "wall"
+                                or neighbours["topright"].element == "sand"
+                                or neighbours["topright"].element == "smoke"
+                            )
+                        ):
 
-                            elif neighbours["left"].element == "air" and (neighbours["right"].element == "wall" or neighbours["right"].element == "sand" or neighbours["right"].element == "smoke"):
-                                nextgen[i][j].element, nextgen[i - 1][j].element = neighbours["left"].element, "smoke"
+                            if (
+                                neighbours["left"].element == "wall"
+                                or neighbours["left"].element == "sand"
+                                or neighbours["left"].element == "smoke"
+                            ) and neighbours["right"].element == "air":
+                                nextgen[i][j].element, nextgen[i + 1][j].element = (
+                                    neighbours["right"].element,
+                                    "smoke",
+                                )
 
-                            elif (neighbours["left"].element == "air" and neighbours["right"].element == "air"):
+                            elif neighbours["left"].element == "air" and (
+                                neighbours["right"].element == "wall"
+                                or neighbours["right"].element == "sand"
+                                or neighbours["right"].element == "smoke"
+                            ):
+                                nextgen[i][j].element, nextgen[i - 1][j].element = (
+                                    neighbours["left"].element,
+                                    "smoke",
+                                )
+
+                            elif (
+                                neighbours["left"].element == "air"
+                                and neighbours["right"].element == "air"
+                            ):
                                 if random.randint(-1, 1) < 0:
-                                    nextgen[i][j].element, nextgen[i + 1][j].element = neighbours["right"].element, "smoke"
+                                    nextgen[i][j].element, nextgen[i + 1][j].element = (
+                                        neighbours["right"].element,
+                                        "smoke",
+                                    )
 
                                 else:
-                                    nextgen[i][j].element, nextgen[i - 1][j].element = neighbours["left"].element, "smoke"
+                                    nextgen[i][j].element, nextgen[i - 1][j].element = (
+                                        neighbours["left"].element,
+                                        "smoke",
+                                    )
 
                         else:
                             continue
@@ -123,9 +234,20 @@ class Cell:
                             nextgen[i][j].element = nextgen[i][j + 1].element
                             nextgen[i][j + 1].element = "sand"
 
-                        elif ((neighbours["bottom"].element == "wall" or neighbours["bottom"].element == "sand")
-                            and (neighbours["bottomleft"].element == "air" or neighbours["bottomleft"].element == "fluid")
-                            and (neighbours["bottomright"].element == "air" or neighbours["bottomright"].element == "fluid")):
+                        elif (
+                            (
+                                neighbours["bottom"].element == "wall"
+                                or neighbours["bottom"].element == "sand"
+                            )
+                            and (
+                                neighbours["bottomleft"].element == "air"
+                                or neighbours["bottomleft"].element == "fluid"
+                            )
+                            and (
+                                neighbours["bottomright"].element == "air"
+                                or neighbours["bottomright"].element == "fluid"
+                            )
+                        ):
 
                             if (
                                 neighbours["left"].element == "air"
