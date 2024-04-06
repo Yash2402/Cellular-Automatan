@@ -48,11 +48,9 @@ Ensure you have the following prerequisites installed:
    ```bash
    cd Cellular-Automaton
    ```
-3. Create Virtual Environment & Install requirements:
+3. Install requirements:
    ```bash
-   python3 -m venv .venv
-   source .venv/bin/activate
-   pip3 install -r requirements.txt
+   python3 -m pip install -r requirements.txt
    ```
 4. Run the python file `main.py` :
    ```bash
