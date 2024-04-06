@@ -42,23 +42,33 @@ Ensure you have the following prerequisites installed:
    ```bash
    git clone https://github.com/yourusername/cellular-automaton-simulation.git
 
+   ```
+
 2. Navigate to the directory Cellular-Automaton:
    ```bash
    cd Cellular-Automaton
-3. Install requirements:
+   ```
+3. Create Virtual Environment & Install requirements:
    ```bash
+   python3 -m venv .venv
+   source .venv/bin/activate
    pip3 install -r requirements.txt
-5. Run the python file ```main.py``` :
+   ```
+4. Run the python file `main.py` :
    ```bash
    python3 main.py
+   ```
 
 ## Usage
-  ### Rules
-  1. To select different elements:
-      - ```1``` : Sand
-      - ```2``` : Water
-      - ```3``` : Smoke
-      - ```4``` : Wall
-  2. To pause the simulation:
-      - ```space```
-  3. To reset:
+
+### Rules
+
+1. To select different elements:
+   - `1` : Sand
+   - `2` : Water
+   - `3` : Smoke
+   - `4` : Wall
+2. To pause the simulation:
+   - `space`
+3. To reset:
+   - `r`
