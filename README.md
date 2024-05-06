@@ -40,7 +40,7 @@ Ensure you have the following prerequisites installed:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/cellular-automaton-simulation.git
+   git clone https://github.com/Yash2402/Cellular-Automaton.git
 
    ```
 
